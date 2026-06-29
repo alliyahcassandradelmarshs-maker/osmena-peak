@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conquering Osmeña Peak: Standing on the Roof of Cebu — A mountaineering travelogue guide documenting the hiking experience to Cebu's highest point.">
+  <meta name="keywords" content="Osmeña Peak, Cebu hiking, mountaineering, Dalaguete, travelogue">
+  <meta name="author" content="Mountaineering Travelogue">
+  <title>Conquering Osmeña Peak: Standing on the Roof of Cebu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: { DEFAULT: '#1B4332', light: '#2D6A4F', dark: '#0D2818' },
+            brown: { DEFAULT: '#6F4E37', light: '#A67B5B', dark: '#4A3228' },
+            sky: { DEFAULT: '#4DA8DA', light: '#87CEEB', dark: '#2E7DB5' },
+          },
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; }
+    .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; animation: heroFade 20s infinite; }
+    .hero-slide:nth-child(1) { background-image: url('images/peak1.jpg'); animation-delay: 0s; }
+    .hero-slide:nth-child(2) { background-image: url('images/peak2.jpg'); animation-delay: 5s; }
+    .hero-slide:nth-child(3) { background-image: url('images/peak3.jpg'); animation-delay: 10s; }
+    .hero-slide:nth-child(4) { background-image: url('images/peak4.jpg'); animation-delay: 15s; }
+    @keyframes heroFade { 0%,22% { opacity: 1; transform: scale(1); } 25%,97% { opacity: 0; transform: scale(1.08); } 100% { opacity: 0; } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    @keyframes pulse-ring { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+    @keyframes loader { 0% { width: 0; } 100% { width: 100%; } }
+    .float-icon { animation: float 4s ease-in-out infinite; }
+    .float-icon-delay { animation: float 4s ease-in-out 2s infinite; }
+    .scroll-indicator { animation: bounce 2s ease-in-out infinite; }
+    .glass { background: rgba(255,255,255,0.12); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); }
+    .glass-dark { background: rgba(13,40,24,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); }
+    .glass-card { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); }
+    .nav-scrolled { background: rgba(13,40,24,0.95) !important; box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .timeline-item::before { content: ''; position: absolute; left: -9px; top: 8px; width: 18px; height: 18px; border-radius: 50%; background: #4DA8DA; border: 3px solid #fff; box-shadow: 0 0 0 3px #4DA8DA; z-index: 2; }
+    .timeline-line { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #4DA8DA, #1B4332); }
+    .lnt-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .lnt-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(27,67,50,0.2); }
+    .gallery-item img { transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .masonry { columns: 1; column-gap: 1rem; }
+    @media (min-width: 640px) { .masonry { columns: 2; } }
+    @media (min-width: 1024px) { .masonry { columns: 2; } }
+    .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+    #loader { position: fixed; inset: 0; z-index: 9999; background: #0D2818; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
+    #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-bar { height: 3px; background: linear-gradient(90deg, #1B4332, #4DA8DA, #6F4E37); animation: loader 2s ease forwards; }
+    #lightbox { position: fixed; inset: 0; z-index: 9998; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; }
+    #lightbox.active { display: flex; }
+    .fab { position: fixed; bottom: 2rem; right: 2rem; z-index: 90; }
+    .hero-parallax { will-change: transform; }
+    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .mobile-menu.open { max-height: 500px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
+
+<!-- Loading Screen -->
+<div id="loader" aria-label="Loading">
+  <div class="text-white text-center mb-8">
+    <span class="material-symbols-outlined text-5xl text-sky mb-4 block">landscape</span>
+    <h2 class="text-2xl font-bold">Conquering Osmeña Peak</h2>
+    <p class="text-white/60 text-sm mt-2">Loading your mountaineering travelogue...</p>
+  </div>
+  <div class="w-64 h-1 bg-white/20 rounded-full overflow-hidden">
+    <div class="loader-bar w-full"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox">
+  <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-sky transition-colors" aria-label="Close lightbox">
+    <span class="material-symbols-outlined text-4xl">close</span>
+  </button>
+  <button id="lightbox-prev" class="absolute left-4 md:left-8 text-white hover:text-sky transition-colors" aria-label="Previous photo">
+    <span class="material-symbols-outlined text-5xl">chevron_left</span>
+  </button>
+  <img id="lightbox-img" src="" alt="" class="max-w-[90vw] max-h-[75vh] object-contain rounded-xl shadow-2xl">
+  <p id="lightbox-caption" class="text-white/80 mt-4 text-center text-lg max-w-2xl"></p>
+  <button id="lightbox-next" class="absolute right-4 md:right-8 text-white hover:text-sky transition-colors" aria-label="Next photo">
+    <span class="material-symbols-outlined text-5xl">chevron_right</span>
+  </button>
+</div>
+
+<!-- Navigation -->
+<header id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <a href="#home" class="flex items-center gap-2 text-white font-bold text-lg md:text-xl">
+        <span class="material-symbols-outlined text-sky">terrain</span>
+        Osmeña Peak
+      </a>
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+        <a href="#home" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Home</a>
+        <a href="#destination" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Destination</a>
+        <a href="#trail-guide" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Trail Guide</a>
+        <a href="#packing" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Packing</a>
+        <a href="#safety" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Safety</a>
+        <a href="#leave-no-trace" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Leave No Trace</a>
+        <a href="#gallery" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Gallery</a>
+        <a href="#reflection" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">Reflection</a>
+        <a href="#references" class="nav-link px-3 py-2 text-white/90 hover:text-sky text-sm font-medium transition-colors">References</a>
+      </nav>
+      <button id="menu-btn" class="lg:hidden text-white p-2" aria-label="Toggle menu" aria-expanded="false">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="mobile-menu lg:hidden glass-dark rounded-xl mb-4" aria-label="Mobile navigation">
+      <div class="flex flex-col p-4 gap-1">
+        <a href="#home" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Home</a>
+        <a href="#destination" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Destination</a>
+        <a href="#trail-guide" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Trail Guide</a>
+        <a href="#packing" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Packing</a>
+        <a href="#safety" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Safety</a>
+        <a href="#leave-no-trace" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Leave No Trace</a>
+        <a href="#gallery" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Gallery</a>
+        <a href="#reflection" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">Reflection</a>
+        <a href="#references" class="mobile-link px-4 py-3 text-white/90 hover:text-sky hover:bg-white/5 rounded-lg text-sm font-medium">References</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 hero-parallax" id="hero-bg">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-forest-dark/70 via-forest-dark/50 to-forest-dark/90 z-10"></div>
+  </div>
+  <!-- Floating mountain icons -->
+  <span class="material-symbols-outlined absolute top-32 left-8 md:left-16 text-white/20 text-6xl float-icon z-20" aria-hidden="true">landscape</span>
+  <span class="material-symbols-outlined absolute top-48 right-8 md:right-24 text-white/15 text-8xl float-icon-delay z-20" aria-hidden="true">terrain</span>
+  <span class="material-symbols-outlined absolute bottom-40 left-16 md:left-32 text-white/10 text-5xl float-icon z-20" aria-hidden="true">filter_hdr</span>
+
+  <div class="relative z-30 max-w-5xl mx-auto px-6 text-center text-white pt-24 pb-32">
+    <p class="text-sky-light text-sm md:text-base uppercase tracking-[0.3em] font-medium mb-4 reveal">Welcome to My Mountaineering Travelogue</p>
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 reveal">
+      Conquering Osmeña Peak:<br>
+      <span class="text-sky-light">Standing on the Roof of Cebu</span>
+    </h1>
+    <p class="text-xs md:text-sm uppercase tracking-widest text-white/60 mb-6 reveal">Mountaineering Travelogue Guide</p>
+    <p class="text-base md:text-lg text-white/85 max-w-3xl mx-auto leading-relaxed mb-8 reveal">
+      This travelogue documents my hiking experience to Osmeña Peak, the highest point in Cebu. It serves as a guide for aspiring hikers by providing information about the destination, hiking preparations, safety reminders, environmental practices, and personal reflections.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 mb-10 reveal">
+      <div class="glass rounded-xl px-5 py-3 text-sm"><span class="text-white/60">Name:</span> <span class="font-medium">________________</span></div>
+      <div class="glass rounded-xl px-5 py-3 text-sm"><span class="text-white/60">Class:</span> <span class="font-medium">________________</span></div>
+      <div class="glass rounded-xl px-5 py-3 text-sm"><span class="text-white/60">Submission Date:</span> <span class="font-medium">________________</span></div>
+    </div>
+    <a href="#destination" class="inline-flex items-center gap-2 bg-sky hover:bg-sky-dark text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg shadow-sky/30 reveal">
+      Explore
+      <span class="material-symbols-outlined">arrow_downward</span>
+    </a>
+  </div>
+  <a href="#destination" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 scroll-indicator text-white/70 hover:text-white transition-colors" aria-label="Scroll down">
+    <span class="material-symbols-outlined text-4xl">keyboard_arrow_down</span>
+  </a>
+</section>
+
+<!-- Quote Section -->
+<section class="py-16 bg-gradient-to-r from-forest to-forest-light text-white">
+  <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <span class="material-symbols-outlined text-5xl text-sky-light mb-4 block">format_quote</span>
+    <blockquote class="text-xl md:text-2xl font-light italic leading-relaxed">
+      "The mountains are calling and I must go. Osmeña Peak reminds us that adventure and beauty exist right here in our own island home."
+    </blockquote>
+  </div>
+</section>
+
+<!-- DESTINATION -->
+<section id="destination" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-sky font-semibold uppercase tracking-widest text-sm">Explore Cebu</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">Destination</h2>
+      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Discover the highest point in Cebu and everything you need to know before your hike.</p>
+    </div>
+
+    <!-- Stats Counters -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 reveal">
+      <div class="glass-card rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+        <span class="material-symbols-outlined text-forest text-4xl mb-2">height</span>
+        <p class="text-3xl md:text-4xl font-bold text-forest counter" data-target="1013">0</p>
+        <p class="text-gray-500 text-sm mt-1">Meters Elevation</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+        <span class="material-symbols-outlined text-sky text-4xl mb-2">hiking</span>
+        <p class="text-3xl md:text-4xl font-bold text-sky"><span class="counter" data-target="2">0</span>/9</p>
+        <p class="text-gray-500 text-sm mt-1">Difficulty (Easy)</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+        <span class="material-symbols-outlined text-brown text-4xl mb-2">route</span>
+        <p class="text-3xl md:text-4xl font-bold text-brown"><span class="counter" data-target="1">0</span> km</p>
+        <p class="text-gray-500 text-sm mt-1">Trail Length</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+        <span class="material-symbols-outlined text-forest-light text-4xl mb-2">schedule</span>
+        <p class="text-3xl md:text-4xl font-bold text-forest-light">20–30</p>
+        <p class="text-gray-500 text-sm mt-1">Minutes to Summit</p>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10 mb-16">
+      <div class="reveal">
+        <div class="bg-gradient-to-br from-forest to-forest-light rounded-2xl p-8 text-white h-full">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-sky-light text-3xl">location_on</span>
+            <h3 class="text-2xl font-bold">Location</h3>
+          </div>
+          <address class="not-italic text-white/90 text-lg leading-relaxed mb-6">
+            Barangay Mantalongon,<br>
+            Dalaguete,<br>
+            Cebu, Philippines
+          </address>
+          <div class="rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              title="Osmeña Peak on Google Maps"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.789!2d123.1865!3d9.7991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33ab894983d9f5b7%3A0x8c8e8e8e8e8e8e8e!2sOsme%C3%B1a%20Peak!5e0!3m2!1sen!2sph!4v1700000000000"
+              width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-6 reveal">
+        <div class="glass-card rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-brown text-2xl">history_edu</span>
+            <h3 class="text-xl font-bold text-forest">Brief History</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed">Osmeña Peak is the highest mountain in Cebu and is famous for its jagged limestone hills that resemble the Chocolate Hills of Bohol. It is one of Cebu's most popular eco-tourism destinations because of its cool climate and breathtaking panoramic views.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-sky text-2xl">favorite</span>
+            <h3 class="text-xl font-bold text-forest">Why I Chose This Mountain</h3>
+          </div>
+          <p class="text-gray-600 leading-relaxed">I chose Osmeña Peak because it is beginner-friendly while offering one of the most beautiful landscapes in Cebu. It allows hikers to enjoy an unforgettable adventure without requiring advanced mountaineering experience.</p>
+        </div>
+        <!-- Interactive Cebu Map -->
+        <div class="glass-card rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-forest text-2xl">map</span>
+            <h3 class="text-xl font-bold text-forest">Cebu Island Map</h3>
+          </div>
+          <svg viewBox="0 0 400 500" class="w-full max-w-xs mx-auto" aria-label="Interactive map of Cebu showing Osmeña Peak location">
+            <defs>
+              <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:0.3"/>
+                <stop offset="100%" style="stop-color:#4DA8DA;stop-opacity:0.5"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#seaGrad)" rx="12"/>
+            <path d="M180,80 Q220,60 250,90 Q280,120 270,160 Q290,200 280,250 Q300,300 270,350 Q250,400 220,420 Q180,440 150,400 Q120,350 130,300 Q110,250 120,200 Q100,150 130,100 Q150,70 180,80 Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="2" opacity="0.9"/>
+            <text x="200" y="250" text-anchor="middle" fill="white" font-size="14" font-weight="600" font-family="Poppins,sans-serif">CEBU</text>
+            <circle cx="230" cy="370" r="8" fill="#4DA8DA" stroke="white" stroke-width="2">
+              <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <line x1="230" y1="378" x2="260" y2="400" stroke="#6F4E37" stroke-width="1.5"/>
+            <text x="265" y="405" fill="#6F4E37" font-size="11" font-weight="600" font-family="Poppins,sans-serif">Osmeña Peak</text>
+            <text x="265" y="418" fill="#6F4E37" font-size="9" font-family="Poppins,sans-serif">Dalaguete</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mountain Facts -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+      <div class="flex items-center gap-4 bg-forest/5 rounded-xl p-5 border border-forest/10">
+        <span class="material-symbols-outlined text-forest text-3xl">landscape</span>
+        <div><p class="font-semibold text-forest">Limestone Karst</p><p class="text-sm text-gray-500">Jagged hill formations</p></div>
+      </div>
+      <div class="flex items-center gap-4 bg-sky/5 rounded-xl p-5 border border-sky/10">
+        <span class="material-symbols-outlined text-sky text-3xl">ac_unit</span>
+        <div><p class="font-semibold text-sky-dark">Cool Climate</p><p class="text-sm text-gray-500">Mountain micro-climate</p></div>
+      </div>
+      <div class="flex items-center gap-4 bg-brown/5 rounded-xl p-5 border border-brown/10">
+        <span class="material-symbols-outlined text-brown text-3xl">payments</span>
+        <div><p class="font-semibold text-brown">₱50 Entrance</p><p class="text-sm text-gray-500">Affordable eco-tourism</p></div>
+      </div>
+      <div class="flex items-center gap-4 bg-forest/5 rounded-xl p-5 border border-forest/10">
+        <span class="material-symbols-outlined text-forest text-3xl">photo_camera</span>
+        <div><p class="font-semibold text-forest">Photo Spot</p><p class="text-sm text-gray-500">Panoramic island views</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section id="itinerary" class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-brown font-semibold uppercase tracking-widest text-sm">Day Plan</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">Itinerary</h2>
+      <p class="text-gray-600 mt-4">Our complete hiking schedule from Cebu City to summit and back.</p>
+    </div>
+    <div class="relative pl-8 reveal">
+      <div class="timeline-line"></div>
+      <div class="space-y-10">
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">5:30 AM</time>
+          <p class="text-gray-700 mt-1 font-medium">Leave Cebu City</p>
+          <p class="text-gray-500 text-sm">Depart from South Bus Terminal heading to Dalaguete.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">8:00 AM</time>
+          <p class="text-gray-700 mt-1 font-medium">Arrive Dalaguete Jump-off</p>
+          <p class="text-gray-500 text-sm">Reach the trailhead in Barangay Mantalongon.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">8:30 AM</time>
+          <p class="text-gray-700 mt-1 font-medium">Registration</p>
+          <p class="text-gray-500 text-sm">Pay entrance fee and register with the local tourism office.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">9:00 AM</time>
+          <p class="text-gray-700 mt-1 font-medium">Reach Summit</p>
+          <p class="text-gray-500 text-sm">Arrive at the highest point in Cebu — 1,013 meters above sea level.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">10:30 AM</time>
+          <p class="text-gray-700 mt-1 font-medium">Photography</p>
+          <p class="text-gray-500 text-sm">Capture panoramic views of Cebu and neighboring islands.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">11:30 AM</time>
+          <p class="text-gray-700 mt-1 font-medium">Descend</p>
+          <p class="text-gray-500 text-sm">Begin the descent back to the jump-off point.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">12:30 PM</time>
+          <p class="text-gray-700 mt-1 font-medium">Lunch</p>
+          <p class="text-gray-500 text-sm">Enjoy local food in Dalaguete before heading home.</p>
+        </div>
+        <div class="timeline-item relative pl-8">
+          <time class="text-sky font-bold text-lg">2:00 PM</time>
+          <p class="text-gray-700 mt-1 font-medium">Return to Cebu City</p>
+          <p class="text-gray-500 text-sm">Board the bus back to Cebu City after a successful hike.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAIL GUIDE -->
+<section id="trail-guide" class="py-20 md:py-28 bg-forest text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-sky-light font-semibold uppercase tracking-widest text-sm">Navigate the Trail</span>
+      <h2 class="text-3xl md:text-5xl font-bold mt-2">Trail Guide</h2>
+      <p class="text-white/70 mt-4 max-w-2xl mx-auto">Everything you need to know about the path from jump-off to summit.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 reveal">
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">flag</span>
+        <h3 class="font-bold text-lg mb-2">Start Point</h3>
+        <p class="text-white/75 text-sm">Dalaguete Jump-off, Barangay Mantalongon — registration area and trail entrance.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">emoji_events</span>
+        <h3 class="font-bold text-lg mb-2">End Point</h3>
+        <p class="text-white/75 text-sm">Osmeña Peak Summit — the highest viewing deck at 1,013 meters elevation.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">timer</span>
+        <h3 class="font-bold text-lg mb-2">Estimated Duration</h3>
+        <p class="text-white/75 text-sm">20–30 minutes one way. Allow extra time for photos and rest breaks.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">signal_cellular_alt</span>
+        <h3 class="font-bold text-lg mb-2">Trail Difficulty</h3>
+        <p class="text-white/75 text-sm">Easy (2/9) — well-maintained path suitable for beginners and families.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">camping</span>
+        <h3 class="font-bold text-lg mb-2">Camp Area</h3>
+        <p class="text-white/75 text-sm">Designated camping zones near the summit for overnight stays with prior arrangement.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">deck</span>
+        <h3 class="font-bold text-lg mb-2">Viewing Deck</h3>
+        <p class="text-white/75 text-sm">Wooden platforms at the summit offer 360-degree panoramic views of Cebu.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">landscape</span>
+        <h3 class="font-bold text-lg mb-2">Rock Formations</h3>
+        <p class="text-white/75 text-sm">Iconic jagged limestone karst hills resembling Bohol's Chocolate Hills.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 hover:bg-white/15 transition-colors">
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3">water</span>
+        <h3 class="font-bold text-lg mb-2">Neighboring Islands</h3>
+        <p class="text-white/75 text-sm">On clear days, see Negros, Bohol, and surrounding Visayan islands from the summit.</p>
+      </div>
+    </div>
+
+    <!-- Landmarks -->
+    <div class="mb-16 reveal">
+      <h3 class="text-2xl md:text-3xl font-bold text-center mb-10">Trail Landmarks</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="group rounded-2xl overflow-hidden shadow-xl bg-white/10">
+          <div class="overflow-hidden h-48">
+            <img src="images/peak1.jpg" alt="Rocky limestone peaks at Osmeña Peak" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-lg">Rocky Limestone Peaks</h4>
+            <p class="text-white/70 text-sm mt-2">The signature jagged karst formations that define Osmeña Peak's unique landscape.</p>
+          </div>
+        </article>
+        <article class="group rounded-2xl overflow-hidden shadow-xl bg-white/10">
+          <div class="overflow-hidden h-48">
+            <img src="images/peak2.jpg" alt="Viewing deck at Osmeña Peak summit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-lg">Viewing Deck</h4>
+            <p class="text-white/70 text-sm mt-2">Elevated wooden platforms perfect for panoramic photography and rest stops.</p>
+          </div>
+        </article>
+        <article class="group rounded-2xl overflow-hidden shadow-xl bg-white/10">
+          <div class="overflow-hidden h-48">
+            <img src="images/peak3.jpg" alt="Camping area near Osmeña Peak" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-lg">Camping Area</h4>
+            <p class="text-white/70 text-sm mt-2">Flat grassy areas near the summit ideal for overnight camping experiences.</p>
+          </div>
+        </article>
+        <article class="group rounded-2xl overflow-hidden shadow-xl bg-white/10">
+          <div class="overflow-hidden h-48">
+            <img src="images/peak4.jpg" alt="Panoramic island views from Osmeña Peak" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-lg">Panoramic Island Views</h4>
+            <p class="text-white/70 text-sm mt-2">Breathtaking vistas of Cebu island and neighboring provinces on clear days.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Weather -->
+    <div class="max-w-4xl mx-auto reveal">
+      <div class="glass rounded-2xl p-8 md:p-10">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-sky-light text-4xl">partly_cloudy_day</span>
+          <h3 class="text-2xl font-bold">Weather Conditions</h3>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-yellow-300">wb_sunny</span>
+            <div><p class="font-semibold">Dry Season</p><p class="text-white/70 text-sm">November–May — best time to visit with clearer skies.</p></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-sky-light">ac_unit</span>
+            <div><p class="font-semibold">Cool Mountain Climate</p><p class="text-white/70 text-sm">Temperatures are noticeably cooler than coastal Cebu.</p></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-sky">rainy</span>
+            <div><p class="font-semibold">Bring Rain Jacket</p><p class="text-white/70 text-sm">Weather can change quickly — always pack rain protection.</p></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-gray-300">foggy</span>
+            <div><p class="font-semibold">Morning Fog</p><p class="text-white/70 text-sm">Early mornings often bring mystical fog over the peaks.</p></div>
+          </div>
+          <div class="flex items-start gap-3 sm:col-span-2">
+            <span class="material-symbols-outlined text-white">air</span>
+            <div><p class="font-semibold">Windy Summit</p><p class="text-white/70 text-sm">Strong winds at the top — secure loose items and dress in layers.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKING -->
+<section id="packing" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-forest font-semibold uppercase tracking-widest text-sm">Prepare Your Gear</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">Packing List</h2>
+      <p class="text-gray-600 mt-4">Essential items for a safe and comfortable hike to Osmeña Peak.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 reveal">
+      <div class="rounded-2xl border-2 border-forest/20 p-8 shadow-lg hover:shadow-xl transition-shadow">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="material-symbols-outlined text-forest text-3xl">backpack</span>
+          <h3 class="text-2xl font-bold text-forest">Basic Hiking Gear</h3>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-forest">backpack</span><span>Backpack</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-sky">water_full</span><span>2L Water</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-brown">lunch_dining</span><span>Snacks</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-forest">hiking</span><span>Hiking Shoes</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-sky">checkroom</span><span>Cap</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-yellow-500">wb_sunny</span><span>Sunscreen</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-sky">rainy</span><span>Rain Jacket</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-brown">apparel</span><span>Extra Shirt</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-forest/5 hover:bg-forest/10 transition-colors"><span class="material-symbols-outlined text-forest">battery_charging_full</span><span>Power Bank</span></li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border-2 border-sky/30 p-8 shadow-lg hover:shadow-xl transition-shadow">
+        <div class="flex items-center gap-3 mb-8">
+          <span class="material-symbols-outlined text-sky text-3xl">construction</span>
+          <h3 class="text-2xl font-bold text-sky-dark">Specialized Equipment</h3>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-sky/5 hover:bg-sky/10 transition-colors"><span class="material-symbols-outlined text-sky">hiking</span><span>Trekking Pole</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-sky/5 hover:bg-sky/10 transition-colors"><span class="material-symbols-outlined text-sky">flashlight_on</span><span>Headlamp</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-sky/5 hover:bg-sky/10 transition-colors"><span class="material-symbols-outlined text-sky">campaign</span><span>Whistle</span></li>
+          <li class="flex items-center gap-4 p-3 rounded-xl bg-sky/5 hover:bg-sky/10 transition-colors"><span class="material-symbols-outlined text-red-500">medical_services</span><span>First Aid Kit</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety" class="py-20 md:py-28 bg-gradient-to-br from-red-50 to-orange-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-red-600 font-semibold uppercase tracking-widest text-sm">Stay Safe</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">Safety Guidelines</h2>
+      <p class="text-gray-600 mt-4">Important reminders to ensure a safe hiking experience.</p>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-8 mb-12 reveal">
+      <div class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-red-500">
+        <h3 class="text-xl font-bold text-red-600 mb-6 flex items-center gap-2"><span class="material-symbols-outlined">warning</span> Weather Alerts</h3>
+        <ul class="space-y-4 text-gray-700">
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-gray-400 text-sm mt-1">foggy</span><span><strong>Fog</strong> — Reduced visibility on the trail and summit.</span></li>
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-gray-400 text-sm mt-1">water_drop</span><span><strong>Slippery Trail</strong> — Wet limestone can be hazardous after rain.</span></li>
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-gray-400 text-sm mt-1">air</span><span><strong>Strong Winds</strong> — Hold onto railings at the viewing deck.</span></li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-sky">
+        <h3 class="text-xl font-bold text-sky-dark mb-6 flex items-center gap-2"><span class="material-symbols-outlined">call</span> Emergency Contacts</h3>
+        <ul class="space-y-4 text-gray-700">
+          <li class="flex items-center gap-3 p-3 bg-sky/5 rounded-xl"><span class="material-symbols-outlined text-sky">business</span><div><p class="font-semibold">Dalaguete Tourism Office</p><p class="text-sm text-gray-500">(032) 402-XXXX</p></div></li>
+          <li class="flex items-center gap-3 p-3 bg-red-50 rounded-xl"><span class="material-symbols-outlined text-red-600">emergency</span><div><p class="font-semibold text-red-600">911</p><p class="text-sm text-gray-500">National Emergency Hotline</p></div></li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-forest">
+        <h3 class="text-xl font-bold text-forest mb-6 flex items-center gap-2"><span class="material-symbols-outlined">health_and_safety</span> Emergency Reminders</h3>
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-center gap-3"><span class="material-symbols-outlined text-forest text-sm">route</span> Stay on trail</li>
+          <li class="flex items-center gap-3"><span class="material-symbols-outlined text-forest text-sm">groups</span> Never hike alone</li>
+          <li class="flex items-center gap-3"><span class="material-symbols-outlined text-forest text-sm">how_to_reg</span> Register first</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 shadow-lg reveal">
+      <h3 class="text-xl font-bold text-forest mb-6 flex items-center gap-2"><span class="material-symbols-outlined text-red-500">medical_services</span> First Aid Checklist</h3>
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">healing</span> Bandages &amp; gauze</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">medication</span> Pain relievers</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">cleaning_services</span> Antiseptic wipes</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">content_cut</span> Medical tape</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">water_drop</span> Blister patches</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">medication_liquid</span> Oral rehydration salts</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">bug_report</span> Insect repellent</div>
+        <div class="flex items-center gap-2 p-3 bg-gray-50 rounded-lg text-sm"><span class="material-symbols-outlined text-red-400 text-lg">thermostat</span> Instant cold pack</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAVE NO TRACE -->
+<section id="leave-no-trace" class="py-20 md:py-28 bg-gradient-to-b from-forest-dark to-forest text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-sky-light font-semibold uppercase tracking-widest text-sm">Protect Nature</span>
+      <h2 class="text-3xl md:text-5xl font-bold mt-2">Leave No Trace</h2>
+      <p class="text-white/70 mt-4 max-w-2xl mx-auto">Seven principles every responsible hiker must follow to preserve Osmeña Peak.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 reveal">
+      <div class="lnt-card glass rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">1</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">event_note</span>
+        <h3 class="font-bold text-lg mb-2">Plan Ahead</h3>
+        <p class="text-white/70 text-sm">Research the trail, check weather, and prepare your gear before the hike.</p>
+      </div>
+      <div class="lnt-card glass rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">2</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">route</span>
+        <h3 class="font-bold text-lg mb-2">Stay on Trails</h3>
+        <p class="text-white/70 text-sm">Walk only on marked paths to protect fragile vegetation and prevent erosion.</p>
+      </div>
+      <div class="lnt-card glass rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">3</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">delete</span>
+        <h3 class="font-bold text-lg mb-2">Dispose Waste Properly</h3>
+        <p class="text-white/70 text-sm">Pack out all trash — leave nothing behind on the mountain.</p>
+      </div>
+      <div class="lnt-card glass rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">4</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">nature</span>
+        <h3 class="font-bold text-lg mb-2">Leave What You Find</h3>
+        <p class="text-white/70 text-sm">Do not take rocks, plants, or artifacts — preserve the natural environment.</p>
+      </div>
+      <div class="lnt-card glass rounded-2xl p-6 text-center lg:col-start-1 lg:col-span-1 sm:col-start-auto">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">5</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">local_fire_department</span>
+        <h3 class="font-bold text-lg mb-2">Minimize Campfire Impact</h3>
+        <p class="text-white/70 text-sm">Avoid open fires — use designated areas and portable stoves if needed.</p>
+      </div>
+      <div class="lnt-card glass rounded-2xl p-6 text-center">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">6</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">pets</span>
+        <h3 class="font-bold text-lg mb-2">Respect Wildlife</h3>
+        <p class="text-white/70 text-sm">Observe animals from a distance and never feed or disturb them.</p>
+      </div>
+      <div class="lnt-card glass rounded-2xl p-6 text-center sm:col-span-2 lg:col-span-2">
+        <div class="w-14 h-14 rounded-full bg-sky/30 flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-sky-light">7</div>
+        <span class="material-symbols-outlined text-sky-light text-3xl mb-3 block">groups</span>
+        <h3 class="font-bold text-lg mb-2">Respect Other Visitors</h3>
+        <p class="text-white/70 text-sm">Keep noise levels down and yield to others on narrow trail sections.</p>
+      </div>
+    </div>
+    <div class="glass rounded-2xl p-8 md:p-10 reveal">
+      <h3 class="text-2xl font-bold mb-6 flex items-center gap-3"><span class="material-symbols-outlined text-sky-light">eco</span> How I Will Protect the Mountain</h3>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div class="flex items-center gap-3 p-4 bg-white/10 rounded-xl"><span class="material-symbols-outlined text-sky-light">recycling</span> Carry my trash</div>
+        <div class="flex items-center gap-3 p-4 bg-white/10 rounded-xl"><span class="material-symbols-outlined text-sky-light">pets</span> Respect wildlife</div>
+        <div class="flex items-center gap-3 p-4 bg-white/10 rounded-xl"><span class="material-symbols-outlined text-sky-light">route</span> Stay on trail</div>
+        <div class="flex items-center gap-3 p-4 bg-white/10 rounded-xl"><span class="material-symbols-outlined text-sky-light">volume_off</span> Avoid loud noises</div>
+        <div class="flex items-center gap-3 p-4 bg-white/10 rounded-xl"><span class="material-symbols-outlined text-sky-light">potted_plant</span> Protect plants</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-20 md:py-28 bg-gray-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-brown font-semibold uppercase tracking-widest text-sm">Captured Moments</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">Photo Gallery</h2>
+      <p class="text-gray-600 mt-4">Real photographs from my Osmeña Peak adventure. Click any image to enlarge.</p>
+    </div>
+    <div class="masonry reveal">
+      <div class="masonry-item gallery-item rounded-2xl overflow-hidden shadow-lg cursor-pointer relative group" data-index="0" data-caption="Rocky limestone peaks — the iconic karst landscape of Osmeña Peak">
+        <img src="images/peak1.jpg" alt="Rocky limestone peaks at Osmeña Peak" class="w-full" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          <p class="text-white font-medium">Rocky Limestone Peaks</p>
+        </div>
+      </div>
+      <div class="masonry-item gallery-item rounded-2xl overflow-hidden shadow-lg cursor-pointer relative group" data-index="1" data-caption="Morning fog rolling over the jagged hills of Dalaguete">
+        <img src="images/peak2.jpg" alt="Morning fog at Osmeña Peak" class="w-full" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          <p class="text-white font-medium">Summit Viewing Deck</p>
+        </div>
+      </div>
+      <div class="masonry-item gallery-item rounded-2xl overflow-hidden shadow-lg cursor-pointer relative group" data-index="2" data-caption="The well-maintained trail leading to the summit">
+        <img src="images/peak3.jpg" alt="Trail to Osmeña Peak summit" class="w-full" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          <p class="text-white font-medium">Mountain Trail</p>
+        </div>
+      </div>
+      <div class="masonry-item gallery-item rounded-2xl overflow-hidden shadow-lg cursor-pointer relative group" data-index="3" data-caption="Panoramic views of Cebu and neighboring islands from the summit">
+        <img src="images/peak4.jpg" alt="Panoramic view from Osmeña Peak" class="w-full" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          <p class="text-white font-medium">Panoramic Island Views</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection" class="py-20 md:py-28 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="text-sky font-semibold uppercase tracking-widest text-sm">Personal Journey</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">Reflection</h2>
+    </div>
+    <div class="glass-card rounded-3xl p-8 md:p-12 shadow-2xl reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="material-symbols-outlined text-forest text-4xl">auto_stories</span>
+        <h3 class="text-2xl font-bold text-forest">My Hiking Reflection</h3>
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed mb-8">
+        Reaching Osmeña Peak reminded me that great adventures do not always require difficult climbs. The peaceful surroundings, fresh mountain air, and breathtaking views made every step worthwhile. Hiking also taught me patience, discipline, and appreciation for nature. I realized that protecting mountains is everyone's responsibility so future generations can experience their beauty as well.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="bg-forest/5 rounded-2xl p-6 border border-forest/10">
+          <h4 class="font-bold text-forest flex items-center gap-2 mb-3"><span class="material-symbols-outlined">fitness_center</span> Physical Challenges</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">The initial ascent tested my endurance despite the short trail. Steep limestone sections required careful footing, and the thin mountain air made me breathe harder than expected.</p>
+        </div>
+        <div class="bg-sky/5 rounded-2xl p-6 border border-sky/10">
+          <h4 class="font-bold text-sky-dark flex items-center gap-2 mb-3"><span class="material-symbols-outlined">psychology</span> Mental Challenges</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Morning fog obscured the views at first, which tested my patience. I learned to appreciate the journey itself rather than rushing to reach the summit for the perfect photo.</p>
+        </div>
+        <div class="bg-brown/5 rounded-2xl p-6 border border-brown/10">
+          <h4 class="font-bold text-brown flex items-center gap-2 mb-3"><span class="material-symbols-outlined">school</span> Lessons Learned</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Preparation matters even on easy trails. Bringing enough water, wearing proper shoes, and starting early made the experience enjoyable and stress-free.</p>
+        </div>
+        <div class="bg-forest/5 rounded-2xl p-6 border border-forest/10">
+          <h4 class="font-bold text-forest flex items-center gap-2 mb-3"><span class="material-symbols-outlined">star</span> Favorite Moment</h4>
+          <p class="text-gray-600 text-sm leading-relaxed">Standing on the viewing deck as the fog cleared, revealing the jagged limestone peaks and the vast Cebu landscape below — a moment I will never forget.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="references" class="py-20 md:py-28 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <span class="text-brown font-semibold uppercase tracking-widest text-sm">Sources</span>
+      <h2 class="text-3xl md:text-5xl font-bold text-forest mt-2">References</h2>
+      <p class="text-gray-600 mt-4">Formatted in APA 7th Edition</p>
+    </div>
+    <div class="bg-white rounded-2xl p-8 md:p-10 shadow-lg reveal">
+      <ol class="space-y-6 list-none">
+        <li class="pl-8 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-forest before:rounded-full">
+          <p class="text-gray-700 leading-relaxed"><span class="font-semibold text-forest">Department of Tourism Region VII.</span> (n.d.). <em>Cebu tourism destinations</em>. Department of Tourism Philippines. Retrieved June 30, 2026, from https://www.visitmycebu.com</p>
+        </li>
+        <li class="pl-8 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-sky before:rounded-full">
+          <p class="text-gray-700 leading-relaxed"><span class="font-semibold text-forest">Dalaguete Tourism Office.</span> (n.d.). <em>Osmeña Peak hiking information</em>. Municipality of Dalaguete. Retrieved June 30, 2026, from https://www.dalaguete.gov.ph</p>
+        </li>
+        <li class="pl-8 relative before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-brown before:rounded-full">
+          <p class="text-gray-700 leading-relaxed"><span class="font-semibold text-forest">Google Maps.</span> (n.d.). <em>Osmeña Peak, Mantalongon, Dalaguete, Cebu</em> [Map]. Google. Retrieved June 30, 2026, from https://maps.google.com/?q=Osmena+Peak+Cebu</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-forest-dark text-white py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="text-center md:text-left">
+        <p class="font-bold text-xl mb-1">Conquering Osmeña Peak</p>
+        <p class="text-white/60 text-sm">Mountaineering Travelogue Guide — PE &amp; Health</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-sky/30 transition-colors" aria-label="Facebook"><span class="material-symbols-outlined text-lg">public</span></a>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-sky/30 transition-colors" aria-label="Instagram"><span class="material-symbols-outlined text-lg">photo_camera</span></a>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-sky/30 transition-colors" aria-label="YouTube"><span class="material-symbols-outlined text-lg">play_circle</span></a>
+      </div>
+      <a href="#home" class="inline-flex items-center gap-2 text-sky-light hover:text-white transition-colors text-sm font-medium">
+        <span class="material-symbols-outlined">keyboard_arrow_up</span> Back to Top
+      </a>
+    </div>
+    <div class="border-t border-white/10 mt-8 pt-8 text-center text-white/50 text-sm">
+      <p>&copy; 2026 Conquering Osmeña Peak: Standing on the Roof of Cebu. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Action Button -->
+<button id="fab" class="fab w-14 h-14 bg-sky hover:bg-sky-dark text-white rounded-full shadow-lg shadow-sky/40 flex items-center justify-center transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none" aria-label="Back to top">
+  <span class="material-symbols-outlined text-2xl">keyboard_arrow_up</span>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  // Loading screen
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.getElementById('loader').classList.add('hidden');
+    }, 1800);
+  });
+
+  // Navbar scroll effect
+  var navbar = document.getElementById('navbar');
+  function updateNavbar() {
+    if (window.scrollY > 80) {
+      navbar.classList.add('glass-dark', 'nav-scrolled');
+    } else {
+      navbar.classList.remove('nav-scrolled', 'glass-dark');
+    }
+  }
+  updateNavbar();
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+
+  // Mobile menu
+  var menuBtn = document.getElementById('menu-btn');
+  var mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', function () {
+    var isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuBtn.querySelector('.material-symbols-outlined').textContent = isOpen ? 'close' : 'menu';
+  });
+  document.querySelectorAll('.mobile-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+    });
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+  // Hero initial reveal
+  document.querySelectorAll('#home .reveal').forEach(function (el, i) {
+    setTimeout(function () { el.classList.add('visible'); }, 300 + i * 150);
+  });
+
+  // Parallax hero
+  var heroBg = document.getElementById('hero-bg');
+  window.addEventListener('scroll', function () {
+    if (heroBg) {
+      heroBg.style.transform = 'translateY(' + (window.scrollY * 0.4) + 'px)';
+    }
+  }, { passive: true });
+
+  // Animated counters
+  var countersStarted = false;
+  function animateCounters() {
+    if (countersStarted) return;
+    var counterSection = document.querySelector('.counter');
+    if (!counterSection) return;
+    var rect = counterSection.closest('section').getBoundingClientRect();
+    if (rect.top > window.innerHeight || rect.bottom < 0) return;
+    countersStarted = true;
+    document.querySelectorAll('.counter').forEach(function (counter) {
+      var target = parseInt(counter.getAttribute('data-target'), 10);
+      var duration = 2000;
+      var start = 0;
+      var startTime = null;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        counter.textContent = Math.floor(progress * target);
+        if (progress < 1) requestAnimationFrame(step);
+        else counter.textContent = target;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  window.addEventListener('scroll', animateCounters, { passive: true });
+  animateCounters();
+
+  // FAB
+  var fab = document.getElementById('fab');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) {
+      fab.classList.remove('opacity-0', 'pointer-events-none');
+    } else {
+      fab.classList.add('opacity-0', 'pointer-events-none');
+    }
+  }, { passive: true });
+  fab.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Lightbox
+  var galleryItems = document.querySelectorAll('.gallery-item');
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxCaption = document.getElementById('lightbox-caption');
+  var currentIndex = 0;
+  var images = [
+    { src: 'images/peak1.jpg', alt: 'Rocky limestone peaks at Osmeña Peak', caption: 'Rocky limestone peaks — the iconic karst landscape of Osmeña Peak' },
+    { src: 'images/peak2.jpg', alt: 'Morning fog at Osmeña Peak', caption: 'Morning fog rolling over the jagged hills of Dalaguete' },
+    { src: 'images/peak3.jpg', alt: 'Trail to Osmeña Peak summit', caption: 'The well-maintained trail leading to the summit' },
+    { src: 'images/peak4.jpg', alt: 'Panoramic view from Osmeña Peak', caption: 'Panoramic views of Cebu and neighboring islands from the summit' }
+  ];
+  function openLightbox(index) {
+    currentIndex = index;
+    lightboxImg.src = images[index].src;
+    lightboxImg.alt = images[index].alt;
+    lightboxCaption.textContent = images[index].caption;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  galleryItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      openLightbox(parseInt(item.getAttribute('data-index'), 10));
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev').addEventListener('click', function () {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    openLightbox(currentIndex);
+  });
+  document.getElementById('lightbox-next').addEventListener('click', function () {
+    currentIndex = (currentIndex + 1) % images.length;
+    openLightbox(currentIndex);
+  });
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+  });
+})();
+</script>
+</body>
+</html>
